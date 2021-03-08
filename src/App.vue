@@ -5,6 +5,7 @@
     <router-link to='/shop'>Shop</router-link> |
     <router-link to='/withChildren'>withChildren</router-link> |
     <router-link to='/vantTest'>VantTest</router-link> |
+    <router-link to='/login'>Login</router-link> |
   </div>
   <router-view />
 </template>

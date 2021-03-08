@@ -8,6 +8,7 @@ import MyInput from 'src/views/MyInput/index.vue'
 import Shop from 'src/views/Shop/index.vue'
 import WithChildren from 'src/views/withChildren/index.vue'
 import VantTest from 'src/views/VantTest/index.vue'
+import Login from 'src/views/Login/index.vue'
 
 const routes = [
     {
@@ -34,6 +35,11 @@ const routes = [
         path: '/vantTest',
         name: 'VantTest',
         component: VantTest
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
     },
 ]
 
