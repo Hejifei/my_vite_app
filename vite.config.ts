@@ -1,20 +1,19 @@
-import * as path from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import pkg from './package.json'
 import vitePluginImp from 'vite-plugin-imp'
 
 export default defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     vitePluginImp({
       libList: [
         {
           libName: 'vant',
           style(name) {
-            console.log({
-              name,
-            })
             if (name === 'form') {
               return false
             }
@@ -26,7 +25,7 @@ export default defineConfig({
           }
         },
       ]
-    })
+    }),
   ],
   resolve: {
     alias: {
@@ -43,6 +42,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '/api')
       },
     }
+  },
+  esbuild: {
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment'
   },
   define: {
     _APP_VERSION: JSON.stringify(pkg.version),

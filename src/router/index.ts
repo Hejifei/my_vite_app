@@ -9,6 +9,7 @@ import Shop from 'src/views/Shop/index.vue'
 import WithChildren from 'src/views/withChildren/index.vue'
 import VantTest from 'src/views/VantTest/index.vue'
 import Login from 'src/views/Login/index.vue'
+import LoginJSX from 'src/views/login_jsx/index.tsx'
 
 const routes = [
     {
@@ -40,6 +41,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login
+    },
+    {
+        path: '/loginJsx',
+        name: 'LoginJSX',
+        component: LoginJSX
     },
 ]
 

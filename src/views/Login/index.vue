@@ -1,8 +1,13 @@
 <template>
-  <h1>Login</h1>
-  <van-cell-group>
-    <van-cell title="单元格" value="内容" />
-    <van-cell title="单元格" value="内容" label="描述信息" />
+  <h1>Login- {{prvsetCount}}</h1>
+  <van-cell-group :title='`list of prevset (${prvsetCount})`' is-link>
+    <van-cell
+      v-for="item in prvsetList"
+      :key='item.id'
+      :title="item.prvset_desc"
+      :value="item.prvset_name"
+      :label="item.prvset_logo"
+    />
   </van-cell-group>
   <van-form @submit="onSubmit">
     <van-field
@@ -32,6 +37,7 @@
 import {
   defineComponent,
   reactive,
+  computed,
 } from 'vue'
 import {
   Cell,
@@ -40,9 +46,8 @@ import {
   Field,
   Button,
   Toast,
-} from 'vant';
-import request from 'src/utils/request'
-
+} from 'vant'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Login',
@@ -58,21 +63,24 @@ export default defineComponent({
       username: 13199999999,
       password: '',
     })
+    const store = useStore()
+    const prvsetCount = computed(() => store.getters['user/prvsetCount'])
+    const prvsetList = computed(() => store.state.user.prvset)
+
     const onSubmit = async (values: any) => {
       try {
-        await request({
-          url: "/user/v1/prelogin",
-          method: "post",
-          data: state,
-        })
+        await store.dispatch('user/login', state)
         Toast.success('登录成功！')
       } catch (err) {
         Toast.fail(err.message)
       }
     }
+
     return {
       state,
       onSubmit,
+      prvsetCount,
+      prvsetList,
     }
   }
 })

@@ -14,7 +14,7 @@ interface IRequestOption extends AxiosRequestConfig {
     useFormData?: boolean
 }
 
-function request (option: IRequestOption) {
+function request (option: IRequestOption): any {
     let {
         url,
         data = {},

@@ -1,4 +1,8 @@
-import axios from "axios"
+import axios, {
+  AxiosResponse,
+  AxiosError,
+  AxiosRequestConfig,
+} from "axios"
 
 let baseURL = "/api"
 
@@ -9,7 +13,7 @@ const service = axios.create({
 
 // 发起请求之前的拦截器
 service.interceptors.request.use(
-  config => {
+  (config: AxiosRequestConfig) => {
     // 如果有token 就携带tokon
     const token = window.localStorage.getItem("accessToken");
     if (token) {
@@ -17,12 +21,12 @@ service.interceptors.request.use(
     }
     return config;
   },
-  error => Promise.reject(error)
+  (error: Error) => Promise.reject(error)
 )
 
 // 响应拦截器
 service.interceptors.response.use(
-  response => {
+  (response: AxiosResponse) => {
     const res = response.data;
 
     if (response.status !== 200) {
@@ -31,7 +35,7 @@ service.interceptors.response.use(
       return res;
     }
   },
-  error => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 )

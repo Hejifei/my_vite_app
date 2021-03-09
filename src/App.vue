@@ -6,6 +6,7 @@
     <router-link to='/withChildren'>withChildren</router-link> |
     <router-link to='/vantTest'>VantTest</router-link> |
     <router-link to='/login'>Login</router-link> |
+    <router-link to='/loginJsx'>LoginJsx</router-link> |
   </div>
   <router-view />
 </template>
